@@ -220,4 +220,9 @@ export interface Options {
    * This can be useful for performance-critical scenarios.
    */
   includeStyleProperties?: string[] | null
+
+  /**
+   * Custom style tag content to be applied only for the screenshot.
+   */
+  customStyleTagContent?: string | null
 }

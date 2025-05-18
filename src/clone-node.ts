@@ -226,6 +226,12 @@ export async function cloneNode<T extends Node>(
       )
     }
 
+    if (isRoot && context.customStyleTagContent) {
+      const styleElement = ownerDocument.createElement('style')
+      styleElement.textContent = context.customStyleTagContent
+      cloned.appendChild(styleElement)
+    }
+
     return cloned
   }
 
