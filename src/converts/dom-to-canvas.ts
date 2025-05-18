@@ -18,5 +18,15 @@ export async function domToCanvas(node: any, options?: any): Promise<HTMLCanvasE
     context.svgStyles.clear()
   }
   const image = createImage(dataUrl, svg.ownerDocument)
-  return await imageToCanvas(image, context)
+  const canvas = await imageToCanvas(image, context)
+
+  if (context.customStyleTagContent) {
+    const styleElement = context.ownerDocument?.createElement('style')
+    if (styleElement) {
+      styleElement.textContent = context.customStyleTagContent
+      canvas.appendChild(styleElement)
+    }
+  }
+
+  return canvas
 }
